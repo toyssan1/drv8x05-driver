@@ -40,6 +40,15 @@
 #ifndef IN2_PIN
 #define IN2_PIN     33  // not used for DRV8106S-Q1 (single HB), safe to leave unconnected
 #endif
+#ifndef SPI_SCK_PIN
+#define SPI_SCK_PIN  18
+#endif
+#ifndef SPI_MISO_PIN
+#define SPI_MISO_PIN 19
+#endif
+#ifndef SPI_MOSI_PIN
+#define SPI_MOSI_PIN 23
+#endif
 
 DRV8x06 driver(
     CS_PIN,
@@ -54,7 +63,7 @@ void setup()
 {
     Serial.begin(115200);
 
-    driver.begin(DRV8106S_Q1);
+    driver.begin(DRV8106S_Q1, SPI_SCK_PIN, SPI_MISO_PIN, SPI_MOSI_PIN);
     // begin() sets BRG_CTRL = 0x00 (half-bridge mode) for DRV8106S automatically
 
     driver.setOutputEnable(true);

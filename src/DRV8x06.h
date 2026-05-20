@@ -50,7 +50,11 @@ public:
 
     // Call in setup(). deviceID must be supplied — no auto-detect without the EVM ID resistors.
     // Wakes the device, initialises registers with TI firmware defaults (S variants only).
-    void begin(DRV8x06_DeviceID deviceID);
+    // sclkPin/misoPin/mosiPin: pass -1 to use the SPI bus defaults (platform-defined).
+    void begin(DRV8x06_DeviceID deviceID,
+               int8_t sclkPin = -1,
+               int8_t misoPin = -1,
+               int8_t mosiPin = -1);
 
     // Sleep / wake
     void setSleep(bool sleep);
@@ -95,6 +99,7 @@ private:
     SPIClass         &_spi;
     uint8_t           _csPin, _nSleepPin, _in1Pin, _in2Pin;
     int8_t            _drvOffPin, _nFaultPin, _in3Pin, _in4Pin;
+    int8_t            _sclkPin, _misoPin, _mosiPin;
     DRV8x06_DeviceID  _deviceID;
     bool              _isDRV871x, _isSVariant, _isDRV8718S, _sleeping;
 

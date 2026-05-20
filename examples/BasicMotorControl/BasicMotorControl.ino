@@ -33,6 +33,15 @@
 #ifndef IN2_PIN
 #define IN2_PIN     33
 #endif
+#ifndef SPI_SCK_PIN
+#define SPI_SCK_PIN  18
+#endif
+#ifndef SPI_MISO_PIN
+#define SPI_MISO_PIN 19
+#endif
+#ifndef SPI_MOSI_PIN
+#define SPI_MOSI_PIN 23
+#endif
 
 DRV8x06 motor(CS_PIN, NSLEEP_PIN, DRVOFF_PIN, NFAULT_PIN, IN1_PIN, IN2_PIN);
 
@@ -43,7 +52,7 @@ void setup()
     // On ESP32, set PWM frequency before begin() so analogWrite uses 20 kHz
     // analogWriteFrequency(IN1_PIN, 20000);  // requires ESP32 core >= 3.x
 
-    motor.begin(DRV8706S_Q1);
+    motor.begin(DRV8706S_Q1, SPI_SCK_PIN, SPI_MISO_PIN, SPI_MOSI_PIN);
     motor.setPWMMode(PWM_MODE_PH_EN);
     motor.setOutputEnable(true);
 

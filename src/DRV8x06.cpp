@@ -34,6 +34,7 @@ DRV8x06::DRV8x06(uint8_t csPin, uint8_t nSleepPin,
       _drvOffPin(drvOffPin), _nFaultPin(nFaultPin),
       _in1Pin(in1Pin), _in2Pin(in2Pin),
       _in3Pin(in3Pin), _in4Pin(in4Pin),
+      _sclkPin(-1), _misoPin(-1), _mosiPin(-1),
       _deviceID(DRV8x06_UNKNOWN),
       _isDRV871x(false), _isSVariant(false), _isDRV8718S(false),
       _sleeping(true)
@@ -41,8 +42,12 @@ DRV8x06::DRV8x06(uint8_t csPin, uint8_t nSleepPin,
     memset(&regs, 0, sizeof(regs));
 }
 
-void DRV8x06::begin(DRV8x06_DeviceID deviceID)
+void DRV8x06::begin(DRV8x06_DeviceID deviceID,
+                    int8_t sclkPin, int8_t misoPin, int8_t mosiPin)
 {
+    _sclkPin = sclkPin;
+    _misoPin = misoPin;
+    _mosiPin = mosiPin;
     _deviceID = deviceID;
 
     switch (_deviceID) {
@@ -76,7 +81,7 @@ void DRV8x06::begin(DRV8x06_DeviceID deviceID)
     if (_in3Pin >= 0) { pinMode(_in3Pin, OUTPUT); digitalWrite(_in3Pin, LOW); }
     if (_in4Pin >= 0) { pinMode(_in4Pin, OUTPUT); digitalWrite(_in4Pin, LOW); }
 
-    _spi.begin();
+    _spi.begin(_sclkPin, _misoPin, _mosiPin, -1);
 
     setSleep(false);
 

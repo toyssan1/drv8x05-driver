@@ -47,6 +47,15 @@
 #ifndef IN4_PIN
 #define IN4_PIN     35
 #endif
+#ifndef SPI_SCK_PIN
+#define SPI_SCK_PIN  18
+#endif
+#ifndef SPI_MISO_PIN
+#define SPI_MISO_PIN 19
+#endif
+#ifndef SPI_MOSI_PIN
+#define SPI_MOSI_PIN 23
+#endif
 
 DRV8x06 driver(
     CS_PIN, NSLEEP_PIN, DRVOFF_PIN, NFAULT_PIN,
@@ -58,7 +67,7 @@ void setup()
 {
     Serial.begin(115200);
 
-    driver.begin(DRV8718S_Q1);
+    driver.begin(DRV8718S_Q1, SPI_SCK_PIN, SPI_MISO_PIN, SPI_MOSI_PIN);
     // DRV8718S_Q1 has 8 gate drive channels.
     // begin() writes 0xEE to all IDRV_CTRL1-8 and 0xAA to VDS_CTRL1-4 by default.
 
