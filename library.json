@@ -1,0 +1,43 @@
+{
+  "name": "DRV8x06",
+  "version": "1.0.0",
+  "description": "ESP32/Arduino driver for TI DRV8x06-Q1 and DRV871x-Q1 SPI H-bridge motor drivers (DRV8106, DRV8705, DRV8706, DRV8714, DRV8718).",
+  "keywords": ["motor", "h-bridge", "spi", "drv8706", "drv8106", "drv8714", "drv8718", "drv8705", "brushed", "ti"],
+  "authors": [
+    {
+      "name": "PropX"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "BSD-3-Clause",
+  "frameworks": ["arduino"],
+  "platforms": "*",
+  "build": {
+    "srcDir": "src"
+  },
+  "examples": [
+    {
+      "name": "BasicMotorControl",
+      "base": "examples/BasicMotorControl",
+      "files": ["BasicMotorControl.ino"]
+    },
+    {
+      "name": "IndependentHalfBridge",
+      "base": "examples/IndependentHalfBridge",
+      "files": ["IndependentHalfBridge.ino"]
+    },
+    {
+      "name": "FaultHandling",
+      "base": "examples/FaultHandling",
+      "files": ["FaultHandling.ino"]
+    },
+    {
+      "name": "DualMotor",
+      "base": "examples/DualMotor",
+      "files": ["DualMotor.ino"]
+    }
+  ]
+}
