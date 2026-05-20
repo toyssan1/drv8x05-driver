@@ -25,11 +25,21 @@
 
 #include <DRV8x06.h>
 
+#ifndef CS_PIN
 #define CS_PIN      5
+#endif
+#ifndef NSLEEP_PIN
 #define NSLEEP_PIN  14
+#endif
+#ifndef NFAULT_PIN
 #define NFAULT_PIN  26
+#endif
+#ifndef IN1_PIN
 #define IN1_PIN     25
+#endif
+#ifndef IN2_PIN
 #define IN2_PIN     33  // not used for DRV8106S-Q1 (single HB), safe to leave unconnected
+#endif
 
 DRV8x06 driver(
     CS_PIN,
